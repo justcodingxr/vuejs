@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .class1 {
+        color:red;
+    }
+    .class2 {
+        color:green;
+    }
+  </style>
+</head>
+<body>
+<div id="app1">{{message}}
+    <img v-bind:src="imgurl" alt="">
+    <a v-bind:href="url">苏宁</a>
+<!--  语法糖-->
+    <a :href="url">苏宁2</a>
+<!--  -->
+    <h3 v-bind:class="{class1:bl,class2:bl2}">{{name}}</h3>
+    <h3 v-bind:class="getclass1()">{{name2}}</h3>
+
+    <ul>
+      <li v-for="(m,index) in movie">{{index}}{{m}}</li>
+    </ul>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    let app=new Vue({
+        el:'#app1',
+        data: {
+            bl2:false,
+            bl:true,
+            message: '你好',
+            name:'黎明',
+            name2:'林聪',
+            movie:['海王','海尔兄弟','进击的巨人','海贼王'],
+            imgurl:'https://image1.suning.cn/uimg/cms/img/161762040008954304.jpg',
+            url:'https://cuxiao.suning.com/scms/sanzhisongshuPC.html?utm_source=union&utm_medium=001002&adtype=5&utm_campaign=28a0cbd4-7f88-43cf-84ea-495dabdff6aa&union_place=un'
+        },
+        methods:{
+            getclass1:function(){
+              return {class1:this.bl2,class2:this.bl}
+            }
+        }
+    })
+</script>
+</body>
+</html>

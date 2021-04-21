@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app2">
+  <name1 ></name1>
+<!--  父组件的 buttclick()访问子组件的 showMessage()-->
+  <name2></name2>
+  <name1 ref="a"></name1>
+  <h3>父访问子组件</h3>
+  <button @click="buttclick">按钮访问</button>
+</div>
+
+<script src="../js/vue.js"></script>
+
+
+<!-- template模板只是组件的小部分-->
+<template id="id1">
+  <div>
+    <h3>子组件1</h3>
+  </div>
+</template>
+
+
+
+<template id="id2">
+  <div>
+    <h3>子组件2</h3>
+  </div>
+</template>
+<script>
+
+
+  //此处仅仅构造，在在components中注册后使用name1
+  const s={
+    methods:{
+      showMessage(){
+        console.log('组件1showMessage')
+      }
+    },
+    template:'#id1',
+    props: {
+      movies:{
+        type:Array,
+        default(){
+          return ['娜扎','金刚']
+        },
+      dMessage:{
+          type:String
+      }
+      }
+    },
+    data(){
+      return {
+        data1:'子组件1数据',
+      }
+    }
+  }
+
+
+  //子组件2
+  const s2={
+    methods:{
+      showMessage(){
+        console.log('组件2showMessage')
+      }
+    },
+    template:'#id2',
+    data(){
+      return {
+        data2:'子组件2数据',
+      }
+    }
+  }
+
+
+  //顶层父组件要使用组件，要再次注册
+  let app2=new Vue({
+    methods:{
+      buttclick(){
+        console.log(this.$children)
+        //$refs默认是一个空对象
+        console.log(this.$refs)
+
+        //this.$children[0]第一个组件
+        this.$children[0].showMessage()
+        console.log(this.$children[0].data1)
+
+        this.$children[1].showMessage()
+        console.log(this.$children[1].data2)
+
+        this.$refs.a.showMessage()
+        console.log(this.$refs.a.data1)
+      }
+    },
+    el:'#app2',
+    data:{
+      message:'李敏',
+      arr:['海尔','海王','海狗']
+    },
+    components:{
+      name1:s,
+      name2:s2
+    }
+  })
+</script>
+</body>
+</html>

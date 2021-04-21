@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app2">
+  <name2></name2>
+  <name1></name1>
+<!--  局部组件语法糖：将对象放入注册-->
+  <name3></name3>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+<!--  子组件-->
+  const cpc1={
+    template:'<div><h3>组件快1</h3></div>'
+  }
+
+  //父组件
+  const cpc2={
+    template:'<div><name1></name1><h3>组件块2</h3></div>',
+    components:{
+      //cpc2中注册和使用cpc1，仅在内部
+      name1:cpc1
+    }
+  }
+
+    //Vue可以看成顶层组件
+    let app2=new Vue({
+        el:'#app2',
+        data:{
+
+        },
+        methods:{
+
+        },
+        computed:{
+
+        },
+        components:{
+          //Vue中注册cpc2
+          name2:cpc2,
+          //注册1才可以在cpc2之外使用
+          name1:cpc1,
+          name3:{
+            template:'<div><h3>组件快3</h3></div>'
+          }
+        }
+    })
+</script>
+</body>
+</html>

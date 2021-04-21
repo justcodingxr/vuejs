@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app2">
+  <!-- dmessage="message"  Vue向组件传数据 -->
+  <cpc1 v-bind:movies="arr" :dMessage="message"></cpc1>
+  <name1 v-bind:movies="arr" :dMessage="message"></name1>
+</div>
+
+<script src="../js/vue.js"></script>
+
+<template id="id1">
+  <!--     Vue向组件传数据后，可以在组件中使用-->
+  <div>
+    <ul >
+      <li v-for="item in movies">{{item}}</li>
+    </ul>
+  </div>
+</template>
+
+<script>
+  //构造注册组件，组件除了template还哟有其他
+  //此处语法糖写法宛城了构造注册，故可以直接使用；不必再在components
+  //中注册
+  Vue.component('cpc1',{
+    template:'#id1',
+    //'movies','dmessage'当作变量
+    props:['movies','dmessage'],
+    data(){
+      return {
+        title:'tile'
+      }
+    }
+  })
+
+
+
+  //此处仅仅构造，在在components中注册后使用name1
+  const s={
+    template:'#id1',
+    props: {
+      movies:{
+        type:Array,
+        default(){
+          return ['娜扎','金刚']
+        },
+      dMessage:{
+          type:String
+      }
+      }
+    },
+    data(){
+      return {
+        title:'tile'
+      }
+    }
+  }
+  //顶层父组件要使用组件，要再次注册
+  let app2=new Vue({
+    el:'#app2',
+    data:{
+      message:'李敏',
+      arr:['海尔','海王','海狗']
+    },
+    components:{
+      name1:s
+    }
+  })
+</script>
+</body>
+</html>

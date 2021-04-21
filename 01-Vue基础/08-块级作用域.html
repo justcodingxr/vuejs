@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app1">
+  <h3 >{{name}}{{message}}</h3>
+  <h3>{{getFullName()}}</h3>
+  <h3>{{fullName}}</h3>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+    let app=new Vue({
+        el:'#app1',
+        data: {
+            name:'李敏',
+            message: '你好',
+            fontsize1:'50px'
+        },
+      methods:{
+          getFullName:function(){
+            return this.name+this.message;
+          }
+      },
+      computed:{
+          fullName:function(){
+            return this.name+this.message;
+          }
+      }
+
+    })
+</script>
+</body>
+</html>

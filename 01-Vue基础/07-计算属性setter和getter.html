@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app1">
+  <h3 >{{fName}}</h3>
+  <h3 >{{fullName}}</h3>
+
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+    let app=new Vue({
+        el:'#app1',
+        data: {
+            name:'李敏',
+            message: '你好',
+            fontsize1:'50px'
+        },
+        computed: {
+            fullName:{
+                 set:function (newValue){
+                   this.name='张伟'
+                   this.message='不好'
+                  },
+                 get:function () {
+                 return this.name + this.message;
+                  }
+            },
+            /*简化写法*/
+            fName:
+                  function(){
+                  return this.name + this.message;
+                  }
+
+
+        }
+
+    })
+</script>
+</body>
+</html>

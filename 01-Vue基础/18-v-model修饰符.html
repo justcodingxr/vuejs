@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app2">
+<!--lazy修饰符,延时回车绑定-->
+  <input type="text" v-model.lazy="name" >
+  <h3>{{name}}</h3>
+
+
+<!--  number修饰符;v-model.number将输入变为number型-->
+  <input type="number" v-model.number="message" >
+  <h3>{{message}}</h3>
+  <h3>{{typeof message}}</h3>
+
+<!--  trim修饰符：剥除空格-->
+  <input type="text" v-model.trim="message2" >
+  <h3>{{message2}}</h3>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+    let app2=new Vue({
+        el:'#app2',
+        data:{
+          name:'黎明',
+          message:'',
+          message2:''
+
+        },
+        methods:{
+
+        },
+        computed:{
+
+        }
+    })
+</script>
+</body>
+</html>

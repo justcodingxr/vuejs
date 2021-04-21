@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app1">
+<!--  v-show-->
+  <h3 >{{name}}</h3>
+  <h3 v-show="isShow">{{name2}}</h3>
+<!--  v-if-->
+  <h3 v-if="isT">{{name}}</h3>
+  <h3 v-else>v-else</h3>
+
+  <h3 v-if="score>=90">优秀</h3>
+  <h3 v-else-if="score>=80">良好</h3>
+  <h3 v-else>及格</h3>
+
+
+  <h3>{{getFullName()}}</h3>
+  <h3>{{fullName}}</h3>
+<!--  v-if和v-show区别：前者false时，dom不存在元素，后者false，存在元素-->
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+    let app=new Vue({
+        el:'#app1',
+        data: {
+            name:'李敏',
+            name2:'张',
+            message: '你好',
+            fontsize1:'50px',
+            isT:true,
+            score:98,
+            isShow:true
+        },
+      methods:{
+          getFullName:function(){
+            return this.name+this.message;
+          }
+      },
+      computed:{
+          fullName:function(){
+            return this.name+this.message;
+          }
+      }
+
+    })
+</script>
+</body>
+</html>

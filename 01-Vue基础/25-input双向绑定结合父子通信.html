@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app2">
+  <h3>父组件{{numberfather}}</h3>
+  <name1 v-bind:numberchild="numberfather"  v-on:eventname="fatherback"></name1>
+</div>
+
+<script src="../js/vue.js"></script>
+
+<template id="id1">
+  <div>
+    <h3>子组件:{{numberchild}}</h3>
+<!--   value=" numberchild",绑定一个变量；@input="changevalue_emit"将框内容传给绑定的变量 -->
+<!--   changevalue_emit内同时向父组件发送事件,把改变的 numberchild传给父组件-->
+<!--    @input实时响应,可以为他定义响应方法-->
+    <input type="text" v-bind:value=" numberchild"  @input="changevalue_emit">
+  </div>
+</template>
+
+<script>
+
+
+  //此处仅仅构造，在在components中注册后使用name1
+  const s={
+    template:'#id1',
+    //props子组件接收
+    props: {
+      numberchild:Number,
+      },
+    methods:{
+      changevalue_emit(e){
+        //做了两件事
+        this.numberchild=event.target.value
+
+        this.$emit('eventname',this.numberchild)
+      },
+
+    },
+    data(){
+      return {
+        title:'tile',
+      }
+    }
+  }
+  //顶层父组件要使用组件，要再次注册
+  let app2=new Vue({
+    el:'#app2',
+    data:{
+      numberfather:5,
+      message:'李敏',
+      arr:['海尔','海王','海狗']
+    },
+    components:{
+      name1:s
+    },
+    methods:{
+      //父组件响应方法会默认接受 this.$emit('eventname',this.numberchild)的this.numberchild
+      fatherback(s){
+        this.numberfather=s
+      }
+    }
+  })
+</script>
+</body>
+</html>

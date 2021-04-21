@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app2">
+
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+    let app2=new Vue({
+        el:'#app2',
+        data:{
+
+        },
+        methods:{
+
+        },
+        computed:{
+
+        }
+    })
+
+
+    //函数式编程filter,map,reduce
+    const nums=[10,20,50,80,150,200,120]
+    let newNums=nums.filter(function(n){
+      //if(n<100) return n
+      return n<100
+    })
+    console.log(newNums)
+
+
+    let newNums2=nums.map(function(n){
+      return n*2
+    })
+    console.log(newNums2)
+
+    let tol=nums.reduce(function(preValue,n){
+      return preValue+n
+    },0)
+    console.log(tol)
+
+    let toltal=nums.filter(n=>n<100).map(n=>n*2).reduce((pre,n)=>pre+n)
+    console.log(toltal)
+</script>
+</body>
+</html>

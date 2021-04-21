@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+
+<div id="app2">
+    <ul>
+      <li v-for="(item,index) in name">{{index+1}}.{{item}}</li>
+    </ul>
+
+  <ul>
+    <li v-for="item in student">{{item}}</li>
+  </ul>
+
+  <ul>
+    <li v-for="(value,key) in student">{{key}} {{value}}</li>
+  </ul>
+
+  <ul>
+    <li v-for="item in name">{{item}}</li>
+  </ul>
+
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+    let app2=new Vue({
+        el:'#app2',
+        data:{
+          name:['qw','zx','sd','ds','re','dw'],
+          student:{
+            name:'李敏',
+            sex:'girl',
+            age:18
+          }
+        },
+        methods:{
+
+        },
+        computed:{
+
+        }
+    })
+</script>
+
+
+</body>
+</html>

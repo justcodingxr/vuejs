@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+
+
+
+
+<body>
+
+<!--父组件模板-->
+<div id="app2">
+<!--  //监听子组件发射的事件eventnaeme,并响应-->
+<!--  v-on可以监听组间定义事件：自定义事件=“父响应” -->
+  <name1 v-on:eventname="backevent"></name1>
+</div>
+
+<script src="../js/vue.js"></script>
+
+<!--子组件模板-->
+<template id="id1">
+  <div>
+<!--    $event获取事件，item获取对象-->
+    <button v-for="item in categories" @click="buttonclick($event,item)">
+      {{item.name}}
+    </button>
+  </div>
+</template>
+
+
+
+
+<script>
+  const s={
+    template:'#id1',
+    data(){
+      return {
+        categories:[{id:'a',name:'热门推荐'},{id:'b',name:'手机数码'},
+          {id:'c',name:'家用电器'},{id:'d',name:'电脑办公'}]
+      }
+    },
+    methods:{
+      //点击各个事件都会发送一个事件eventname
+      buttonclick(e,item){
+        console.log(e)//显示事件
+        console.log(item)
+
+      // 自定义事件向父传数据,发射事件eventname,item会默认传给父组件响应的方法
+        //自定义事件在点击响应方法中
+        this.$emit('eventname',item)
+      }
+    },
+    props: {
+      movies:{
+        type:Array,
+        default(){
+          return ['娜扎','金刚']
+        },
+        dMessage:{
+          type:String
+        }
+      }
+    }
+  }
+
+  //顶层父组件要使用组件，要再次注册
+  let app2=new Vue({
+    el:'#app2',
+    data:{
+      message:'李敏',
+      arr:['海尔','海王','海狗']
+    },
+    components:{
+      name1:s
+    },
+    methods:{
+      //父组件响应子组件的方法定义
+      backevent(item){
+        console.log('父组件响应','子组件的传参:',item)
+      }
+    }
+  })
+</script>
+
+
+
+</body>
+</html>

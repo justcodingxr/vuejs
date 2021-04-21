@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <script>
+<!--    链式编程-->
+    //请求成功执行resolve,失败执行reject
+//reject是可选的
+    new Promise((resolve,reject)=>{
+      setTimeout(()=>{
+        resolve()
+      },1000)
+    }).then(()=>{
+      console.log('first resolve');
+
+      return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+          resolve()
+        },1000)
+      })
+    }).then(()=>{
+      console.log('second resolve');
+
+      return new Promise((resolve ,reject)=>{
+        setTimeout(()=>{
+          resolve()
+        },1000)
+      })
+    }).then(()=>{
+      console.log('third resolve');
+    })
+  </script>
+</body>
+</html>

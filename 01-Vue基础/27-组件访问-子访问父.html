@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app2">
+  <name1 ></name1>
+  <name2></name2>
+
+
+</div>
+
+<script src="../js/vue.js"></script>
+
+
+<!-- template模板只是组件的小部分-->
+<template id="id1">
+  <div>
+    <h3>子组件1</h3>
+    <button @click="buttclick">按钮访问</button>
+  </div>
+</template>
+
+
+
+<template id="id2">
+  <div>
+    <h3>子组件2</h3>
+  </div>
+</template>
+<script>
+
+
+  //此处仅仅构造，在在components中注册后使用name1
+  const s={
+    methods:{
+      buttclick(){
+        //子组件访问父组件
+        console.log(this.$parent)
+        console.log(this.$parent.message)
+        this.$parent.showMessage()
+        //访问根组件
+        console.log(this.$root)
+      },
+      showMessage(){
+        console.log('组件1showMessage')
+      }
+    },
+    template:'#id1',
+    props: {
+      movies:{
+        type:Array,
+        default(){
+          return ['娜扎','金刚']
+        },
+      dMessage:{
+          type:String
+      }
+      }
+    },
+    data(){
+      return {
+        title:'tile',
+      }
+    }
+  }
+
+
+  //子组件2
+  const s2={
+    methods:{
+      showMessage(){
+        console.log('组件2showMessage')
+      }
+    },
+    template:'#id2',
+  }
+
+
+  //顶层父组件要使用组件，要再次注册
+  let app2=new Vue({
+    methods:{
+      showMessage(){
+        console.log('Vue的showMessage')
+      }
+    },
+    el:'#app2',
+    data:{
+      message:'李敏',
+      arr:['海尔','海王','海狗']
+    },
+    components:{
+      //Vue的components注册子组件,Vue本身不用注册
+      name1:s,
+      name2:s2
+    }
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app1">
+  <span v-if="T">
+    <lable for="username"></lable>
+<!--    key防止复用-->
+    <input type="text" id="username" placeholder="用户账号" key="a">
+    <br>
+    <input type="text" placeholder="用户密码">
+  </span>
+
+  <span v-else>
+    <lable for="useremail"></lable>
+    <input type="text" id="useremail" placeholder="邮箱" key="b">
+    <br>
+    <input type="text" placeholder="邮箱密码">
+  </span>
+  <button @click="changeT()">切换登录方式</button>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+    let app=new Vue({
+        el:'#app1',
+        data: {
+            name:'李敏',
+            message: '你好',
+            fontsize1:'50px',
+            T:true
+        },
+      methods:{
+          getFullName:function(){
+            return this.name+this.message;
+          },
+           changeT:function(){
+          this.T=!(this.T)
+        }
+      },
+      computed:{
+          fullName:function(){
+            return this.name+this.message;
+          }
+      }
+
+    })
+</script>
+</body>
+</html>

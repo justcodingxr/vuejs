@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app2">
+<!--  v-model是双向绑定的-->
+  <input type="text" v-model="message" >
+  {{message}}
+
+  <h3></h3>
+<!--  v-model等价式-->
+  <input type="text" v-bind:value="message2" v-on:input="changeValue" >
+  //不写（）会传事件参数
+  {{message2}}
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+    let app2=new Vue({
+        el:'#app2',
+        data:{
+              message:'黎明',
+              message2:'小明'
+        },
+        methods:{
+          changeValue(event){
+            this.message2=event.target.value
+          }
+
+        },
+        computed:{
+
+        }
+    })
+</script>
+</body>
+</html>

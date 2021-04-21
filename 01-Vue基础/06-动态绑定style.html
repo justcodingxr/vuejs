@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app1">
+  <h3 :style="{fontsize:fontsize1,color:'red'}">{{name}}</h3>
+  <h3 :style="[style1]">{{name}}</h3>
+  <h3 :style="[style2]">{{name}}</h3>
+  <h3 :style="[style1,style3]">{{name}}</h3>
+
+  <h3>{{fullName}}</h3>
+  <h3>书籍总价：{{fullPrice}}</h3>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+    let app=new Vue({
+        el:'#app1',
+        data: {
+            name:'李敏',
+            message: '你好',
+            fontsize1:'50px',
+            style1:{fontsize:'100px'},
+            style2:{color:'green'},
+            style3:{fontsize:this.fontsize1,color:'green'},
+            books:[{id:1,name:'代码大全',price:15},
+                   {id:2,name:'计算机系统',price:20},
+                   {id:3,name:'操作系统',price:10}]
+        },
+        computed: {
+            fullPrice:function(){
+              let result=0;
+              for(let i=0;i<this.books.length;i++){
+                result+=this.books[i].price;
+              }
+              return result;
+            },
+            fullName:function(){
+              return this.name+this.message;
+    }
+        }
+    })
+</script>
+</body>
+</html>

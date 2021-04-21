@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app2">
+  <cpn></cpn>
+<!--  //3使用-->
+  <my-cpc></my-cpc>
+  <myCpc2></myCpc2>
+</div>
+<!--//全局组件额可以在多个Vue实例使用-->
+  <my-cpc></my-cpc>
+<div id="app3">
+
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  //1创建组件构造器
+  // const cpnC = Vue.extend({
+  //   template:'<div><h2>我的组件块</h2></div2>'
+  // })
+  const cpnC2 = Vue.extend({
+    template:'<div><h2>我的组件块2</h2></div2>'
+  })
+
+  //2注册组件
+  // Vue.component('my-cpc',cpnC)
+    //语法糖方法：将构造的template的对象作为注册的参数
+  Vue.component('my-cpc',{
+    template:'<div><h2>我的组件块</h2></div2>'
+  })
+    let app2=new Vue({
+        el:'#app2',
+        data:{
+
+        },
+        methods:{
+
+        },
+        computed:{
+
+        },
+      //注册局部组件
+      components:{
+          myCpc2:cpnC2
+      }
+    })
+
+  let app3=new Vue({
+    el:'#app3',
+    data:{
+
+    },
+    methods:{
+
+    },
+    computed:{
+
+    }
+  })
+</script>
+</body>
+</html>

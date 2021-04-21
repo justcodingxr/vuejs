@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app2">
+<!--  相同组件的数据不是一个-->
+  <cpn1></cpn1>
+  <cpn1></cpn1>
+  <cpn2></cpn2>
+</div>
+
+<script src="../js/vue.js"></script>
+<!--1.script 标签text/x-template-->
+<script type="text/x-template" id="id1">
+  <div>
+    <h3>抽离组件1</h3>
+    <h3>{{title}}</h3>
+    <h3>当前计数器：{{counter}}</h3>
+    <button v-on:click="add">+</button>
+    <button v-on:click="sub">-</button>
+  </div>
+</script>
+
+
+<!--2.template标签-->
+<template id="id2">
+  <div>
+    <h3>抽离组件2</h3>
+  </div>
+</template>
+
+
+
+<script>
+<!--  模板的分离写法-->
+    Vue.component('cpn1',{
+      template:'#id1',
+      //组件不能访问Vue的数据，要自己定义
+      data(){
+        return {
+          title:'组件1标题',
+          counter:0
+        }
+      },
+
+      //组件的方法
+      methods:{
+        add:function(){
+          this.counter++;
+        },
+        sub:function(){
+          this.counter--;
+        }
+      }
+      //组件不能访问Vue的数据，要自己定义
+
+    }),
+    Vue.component('cpn2',{
+      template:'#id2'
+    })
+    let app2=new Vue({
+        el:'#app2',
+        data:{
+
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app1">{{name+','+message}}呀
+      <h3>{{name}} {{message}}呀</h3>
+      <div >{{name+','+message}}呀</div>
+      <div >{{counter*2}}</div>
+      <h3 v-html="ul"></h3>
+      <h3 v-text="str">零</h3>
+      <h3 v-pre>{{message}}</h3>
+      <h3 v-cloak>{{message}}</h3>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+    const app=new Vue({
+        el:'#app1',
+        data: {
+            message: '你好',
+            name:'黎明',
+            name2:'张间',
+            counter:10,
+            ul:'<a href="http://www.baidu.com">百度</a>',
+            str:'凌'
+        }
+    })
+</script>
+</body>
+</html>

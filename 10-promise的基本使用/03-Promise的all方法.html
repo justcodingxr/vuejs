@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  // let isR1=false;
+  // let isR2=false;
+  // $ajax({
+  //   url:'',
+  //   success:function (){
+  //     console.log('结果1');
+  //     handleResult()
+  //   }
+  // })
+  //
+  // $ajax({
+  //   url:'',
+  //   success:function (){
+  //     console.log('结果2');
+  //     handleResult()
+  //   }
+  // })
+  //
+  // function handleResult(){
+  //   if(isR1 && isR2){
+  //     console.log('1和2都完成')
+  //   }
+  // }
+
+  //Promise all 实现
+  // Promise.all([
+  //     new Promise((resolve)=>{
+  //     $ajax({
+  //       url:'url1',
+  //       success:function (data){
+  //         console.log('结果1');
+  //       resolve(data)
+  //       }
+  //     })
+  // }),
+  //   new Promise((resolve)=>{
+  //     $ajax({
+  //       url:'url2',
+  //       success:function (data){
+  //         console.log('结果2');
+  //         resolve(data)
+  //       }
+  //     })
+  //   })
+  // ]).then(result=>{
+  //   result[0]
+  //   result[1]
+  // })
+  //
+
+// Promise all 实现 setTimeout模拟
+  Promise.all([
+    new Promise((resolve,reject)=>{
+      setTimeout(()=>{
+        resolve({name:'li',age:18})
+      },2000)
+    }),
+    new Promise((resolve,reject)=>{
+      setTimeout(()=>{
+        resolve({name:'zh',age:19})
+      },1000)
+    })
+  ]).then(result=>{
+  console.log(result)
+  })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <div @click="divClick">
+<!--   .stop 阻止事件冒泡-->
+    <button @click.stop="buttonFunction1">button1</button>
+<!--    .prevent阻止默认事件-->
+
+<!--    监听键盘-->
+    <input type="text" @keyup.enter="onkeyup">
+  </div>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const app=new Vue({
+    el:'#app',
+    data:{
+      counter:0,
+    },
+    methods:{
+
+      /*参数函数*/
+      buttonFunction1(a){
+        console.log('buttonFunction1')
+      },
+      /*两参函数*/
+      divClick(){
+        console.log('divClick')
+      }
+    }
+
+  })
+</script>
+
+</body>
+</html>

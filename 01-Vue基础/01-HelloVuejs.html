@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+  <div id="app1">
+        <ul>
+            <li v-for="item in name">{{item}}</li>
+        </ul>
+  </div>
+  <script src="../js/vue.js"></script>
+
+  <script>
+    let app1=new Vue({
+      el:'#app1',
+      data:{
+        name:['星际穿越','大话西游','海王','少年派']
+      }
+    })
+  </script>
+
+</body>
+</html>

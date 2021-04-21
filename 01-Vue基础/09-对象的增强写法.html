@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app1">
+  <h3 >{{name}}{{message}}</h3>
+  <h3>{{getFullName()}}</h3>
+  <h3>{{fullName}}</h3>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+    let app=new Vue({
+        el:'#app1',
+        data: {
+            name:'李敏',
+            message: '你好',
+            fontsize1:'50px'
+        },
+      methods:{
+          getFullName:function(){
+            return this.name+this.message;
+          }
+      },
+      computed:{
+          fullName:function(){
+            return this.name+this.message;
+          }
+      }
+
+    })
+
+
+    const obj={
+      name:'兔子',
+      age:18,
+      run:function(){
+        console.log('奔跑')
+      },
+      eat:function(){
+        console.log('吃萝卜')
+      }
+
+    }
+    console.log(obj)
+    /*增强型*/
+    const n="乌龟"
+    const a=19
+    const obj1={
+      n,
+      a,
+      pa(){
+        console.log('爬')
+      }
+    }
+    console.log(obj1)
+
+
+
+</script>
+</body>
+</html>

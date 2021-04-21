@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+<!--  链接样式-->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app2">
+  <div v-if="books.length">
+  <table>
+    <thread>
+      <tr>
+        <th>编号</th>
+        <th>书籍名称</th>
+        <th>出版日期</th>
+        <th>价格</th>
+        <th>购买数量</th>
+        <th>操作</th>
+      </tr>
+    </thread>
+
+    <tbody>
+    <tr v-for="(item,index) in books">
+<!--        <td v-for="value in item">{{value}}</td>-->
+      <td>{{item.id}}</td>
+      <td>{{item.name}}</td>
+      <td>{{item.date}}</td>
+<!--      两位小数-->
+<!--      <td>{{getFinalPrice(item.price)}}</td>-->
+<!--      过滤器方法-->
+      <td>{{item.price | showPrice }}</td>
+      <td>
+        <button v-on:click="sub(index)" v-bind:disabled="item.count<=1">-</button>
+        {{item.count}}
+        <button v-on:click="add(index)">+</button>
+      </td>
+      <td><button @click="remove(index)">移除</button></td>
+
+    </tbody>
+  </table>
+<!--计算属性使用不加括号，定义要加-->
+    <h3>书籍总价:{{totalPrice | showPrice}}</h3>
+  </div>
+
+  <div v-else>
+    <h3>购物车为空</h3>
+  </div>
+</div>
+
+<script src="../js/vue.js"></script>
+<script src="main.js"></script>
+
+
+
+</body>
+</html>
